@@ -12,7 +12,10 @@
     "react": "^16.4.1",
     "react-chartkick": "^0.2.1",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "react-test-renderer": "^16.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,10 +25,5 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "serve": "cross-env NODE_ENV=production node ./src/backend/server.js"
-  },
-  "devDependencies": {
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "react-test-renderer": "^16.4.1"
   }
 }
