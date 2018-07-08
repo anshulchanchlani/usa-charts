@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it renders correctly 1`] = `
+<div
+  className="App"
+>
+  <div>
+    <div
+      style={
+        Object {
+          "marginLeft": "10%",
+          "width": "80%",
+        }
+      }
+    >
+      <div
+        aria-describedby={undefined}
+        className="MuiFormControl-root-1 MuiFormControl-marginDense-3 MuiFormControl-fullWidth-4"
+      >
+        <label
+          className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9 MuiInputLabel-marginDense-7"
+          data-shrink={false}
+          htmlFor="filterField"
+        >
+          Enter state to filter chart data
+        </label>
+        <div
+          className="MuiInput-root-15 MuiInput-fullWidth-22 MuiInput-formControl-16 MuiInput-underline-19"
+        >
+          <input
+            aria-invalid={false}
+            autoComplete={undefined}
+            autoFocus={undefined}
+            className="MuiInput-input-23 MuiInput-inputMarginDense-24"
+            defaultValue={undefined}
+            disabled={false}
+            id="filterField"
+            name={undefined}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={undefined}
+            onKeyUp={undefined}
+            placeholder={undefined}
+            readOnly={undefined}
+            required={undefined}
+            rows={undefined}
+            type="text"
+            value={undefined}
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      id="chartJobsVsSectors"
+      style={
+        Object {
+          "color": "#999",
+          "fontFamily": "'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif",
+          "fontSize": "14px",
+          "height": "300px",
+          "lineHeight": "300px",
+          "textAlign": "center",
+          "width": "100%",
+        }
+      }
+    >
+      Loading...
+    </div>
+  </div>
+</div>
+`;
