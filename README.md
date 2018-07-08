@@ -22,4 +22,4 @@ $ docker run -it -d -p 4000:4000 --name=usa-charts usa-charts
 ```
 To run tests, navigate to root directory and run 
 ```sh
-$ npm run test
+$ yarn test
