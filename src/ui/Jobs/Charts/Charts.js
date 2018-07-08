@@ -5,11 +5,10 @@ import states from '../../.././data/states';
 import TextField from '@material-ui/core/TextField';
 import fetch from 'isomorphic-fetch'
 import jobs from '../../../data/jobs'
-import {convertArrayOfJsonObjectsToRequiredFormatForLineChart, 
-        filterDataAccordingToState} from '../../.././utility/utility.js';
+import { filterDataAccordingToState,
+        convertArrayOfJsonObjectsToRequiredFormat,NAME,STATE} from '../../.././utility/utility.js';
 
-const NAME = "name";
-const STATE = "State"
+
 const options = {
     tooltip: { isHtml: false },    // CSS styling affects only HTML tooltips.
     legend: { position: 'right' },
@@ -22,7 +21,7 @@ const styles ={
         marginLeft:'10%'
     }
 }
-const convertedData = convertArrayOfJsonObjectsToRequiredFormatForLineChart(jobs,NAME);
+const convertedData = convertArrayOfJsonObjectsToRequiredFormat(jobs,NAME,states);
 
 
 export default class Charts extends Component{
@@ -41,15 +40,15 @@ export default class Charts extends Component{
         }else
         
         {
-           this.filterBothCharts(e.target.value,NAME,STATE)
+           this.filterBothCharts(e.target.value,NAME)
         }
         
 
     }
-    filterBothCharts(filterText,key1,key2){
+    filterBothCharts(filterText,key){
         let self =this;
-        self.setState({jobsData:filterDataAccordingToState(filterText,convertedData,key1,states )})
-        self.setState({filteredPopulationData:filterDataAccordingToState(filterText,self.state.populationData,key2,states)})
+        self.setState({jobsData:filterDataAccordingToState(filterText,convertedData,key, )})
+        self.setState({filteredPopulationData:filterDataAccordingToState(filterText,self.state.populationData,key)})
 
     }
 
@@ -61,7 +60,7 @@ export default class Charts extends Component{
           return response.json();
         })
         .then(function(myJson) {
-          const convertedPopulationData = convertArrayOfJsonObjectsToRequiredFormatForLineChart(myJson,STATE);
+          const convertedPopulationData = convertArrayOfJsonObjectsToRequiredFormat(myJson,STATE,states);
           if(self._isMounted)
           {
               self.setState({populationData:convertedPopulationData,filteredPopulationData:convertedPopulationData});
@@ -75,8 +74,17 @@ export default class Charts extends Component{
     componentWillUnmount(){
         this._isMounted = false;
     }
+
+    isValidData(data){
+        if(data!==undefined && data!==null && data.constructor===Array && data.length>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
     render(){
-         
+        
+        let self = this;
         return(
         <div>
         <div style={styles.textField}>
@@ -88,17 +96,19 @@ export default class Charts extends Component{
           margin="dense"
         />
         </div>
+        {this.isValidData(self.state.jobsData)?
         <ColumnChart   
             id="chartJobsVsSectors"
             xtitle="Industries" 
-            ytitle="Value" 
+            ytitle="Jobs" 
             stacked={true}
             library={options}
-            title="Population vs Jobs"
+            title="Type of jobs within each state"
             discrete={true} 
-            data={this.state.jobsData}/>
+            data={this.state.jobsData}/>:null}
         
-        {this.state.filteredPopulationData!==null && this.state.filteredPopulationData.length>0?
+
+        {this.isValidData(self.state.filteredPopulationData)?
         <ColumnChart   
             id="chartPopulationVsYears"
             xtitle = "Year Groups"

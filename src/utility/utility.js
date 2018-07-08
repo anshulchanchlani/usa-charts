@@ -1,18 +1,19 @@
-//sample   {"name":"Call parents", "data": {"2017-01-01": 5, "2017-01-02": 3, ...}}
-// {"name":"AL","agriculture":60.0, "manufacturing":0.0, "mining":2.0, "trade":0.0, "domestic service":0.0, "professional service":0.0}
-
-
-var convertArrayOfJsonObjectsToRequiredFormatForLineChart = function (data,key,callback){
+const NAME = "name";
+const STATE = "State";
+const convertArrayOfJsonObjectsToRequiredFormat = function (data,key,states,callback){
     let convertedData =[];
-    if(data!==null && data!==undefined && data!==''){
+
+    if(isValidArray(data) && isValidText(key) && (key===NAME ||key===STATE)){
         data.forEach(function(obj){
+
             let tempObj ={};
-            tempObj["name"] = obj[key];
+            tempObj["name"] = states[obj[key]];
             delete obj[key];
             tempObj["data"] = obj;
             convertedData.push(tempObj);   
 
         })
+       
         return convertedData;
     }
     else{
@@ -20,21 +21,38 @@ var convertArrayOfJsonObjectsToRequiredFormatForLineChart = function (data,key,c
     }
 }
 
-var filterDataAccordingToState = function(state,data,key,states){
-    if(!isNaN(state)&&state===undefined && state===null && state==='' || data===null){
-    
+const filterDataAccordingToState = function(state,data,key){
+    if(!isValidText(state) || !isValidArray(data)){
+        return null;
+    }else  if(key!==NAME){
         return null;
     }
     else{
 
         data = data.filter(function(obj){
-            return (obj["name"] === state || states[obj["name"]].toUpperCase().indexOf(state.toUpperCase())>-1)
+            
+            return (obj[key].toUpperCase().indexOf(state.toUpperCase())>-1)
         })
+        
         return data;
     }
 
 }
 
+const isValidArray = function(arr){
+    if(arr!==null && arr!==undefined && arr.constructor === Array && arr.length>0){
+        return true;
+    }
+    else 
+        return false;
+}
+const isValidText = function (text){
+    if(text!==null && text!==undefined && text!=='' && isNaN(text)){
+        return true;
+    }else{
+        return false;
+    }
+}
 
-export {convertArrayOfJsonObjectsToRequiredFormatForLineChart,
-filterDataAccordingToState}
+export {convertArrayOfJsonObjectsToRequiredFormat,
+filterDataAccordingToState,isValidText,isValidArray,NAME,STATE}
