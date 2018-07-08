@@ -19,6 +19,7 @@ $ git clone https://github.com/anshulchanchlani/usa-charts.git
 $ cd usa-charts
 $ docker build . --tag=usa-charts
 $ docker run -it -d -p 4000:4000 --name=usa-charts usa-charts
+$ Open 0.0.0.0:4000 in your browser
 ```
 To run tests, navigate to root directory and run 
 ```sh
