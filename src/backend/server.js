@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser')
 const csvjson = require('csvjson')
-
+const PORT = 4000;
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -30,6 +30,6 @@ app.get('/getFileData',function(req,res){
 })
 
 
-app.listen(5000,function(){
-    console.log('Server listening on localhost 5000')
+app.listen(PORT,'0.0.0.0',function(){
+    console.log('Server listening on 0.0.0.0:',PORT)
 })

@@ -5,6 +5,7 @@ import states from '../../.././data/states';
 import TextField from '@material-ui/core/TextField';
 import fetch from 'isomorphic-fetch'
 import jobs from '../../../data/jobs'
+import config from '../../../config/config'
 import {
     filterDataAccordingToState,
     convertArrayOfJsonObjectsToRequiredFormat, isValidArray, NAME, STATE
@@ -56,7 +57,8 @@ export default class Charts extends Component {
     componentDidMount() {
         var self = this;
         this._isMounted = true;
-        fetch('http://localhost:5000/getFileData')
+        fetch('http://'+config["SERVER_IP"]+':'+config["SERVER_PORT"]+'/getFileData')
+
             .then(function (response) {
                 return response.json();
             })
