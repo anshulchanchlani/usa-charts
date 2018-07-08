@@ -23,3 +23,8 @@ $ docker run -it -d -p 4000:4000 --name=usa-charts usa-charts
 To run tests, navigate to root directory and run 
 ```sh
 $ yarn test
+
+
+#Issues
+
+On running yarn test, you might find 'Cannot find module 'react' from Charts.test.js', please run 'yarn add global react' and run tests again.

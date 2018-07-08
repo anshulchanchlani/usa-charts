@@ -6,8 +6,8 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY package.json yarn.lock /app/
+
 RUN yarn install 
-RUN yarn add global react
 
 
 COPY . /app
