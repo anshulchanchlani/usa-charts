@@ -10,7 +10,7 @@ A project to visualize the following data:
 I am running USA-Charts with 
     1. Node v8.9.4
     2. Docker version 18.03.1-ce, build 9ee9f40,
-    3. npm v5.6.0. 
+    3. yarn v1.3.2. 
 Please install these before proceeding.
 
 The following will run usa-charts in production mode on your local system on '0.0.0.0:4000'
@@ -22,4 +22,4 @@ $ docker run -it -d -p 4000:4000 --name=usa-charts usa-charts
 ```
 To run tests, navigate to root directory and run 
 ```sh
-$ npm run tests
+$ npm run test

@@ -8,12 +8,12 @@ WORKDIR /app
 COPY package*.json /app/
 
 
-RUN npm install
+RUN yarn install
 
 COPY . /app
 
-RUN npm run build
+RUN yarn build
 
 EXPOSE 4000
 
-CMD ["npm","run","serve"]
+CMD ["yarn","serve"]
